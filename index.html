@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07100d" />
+  <meta name="description" content="A calm, capable workspace for prime numbers, complex roots, quadratics and number theory." />
+  <title>NumberTheory · Mathematical workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div><div class="grain" aria-hidden="true"></div>
+<div class="app">
+  <aside class="sidebar">
+    <a class="brand" href="#home" aria-label="NumberTheory home"><span class="brand-mark">n</span><span class="brand-name">number<span>theory</span></span></a>
+    <div class="navigation"><div class="nav-label">Workspace</div><nav class="nav" aria-label="Math tools">
+      <a href="#prime" data-tool="prime"><span class="ico">⌘</span>Prime checker</a>
+      <a href="#complex" data-tool="complex"><span class="ico">√</span>Complex roots</a>
+      <a href="#quadratic" data-tool="quadratic"><span class="ico">x²</span>Quadratics</a>
+      <a href="#number" data-tool="number" class="active"><span class="ico">∴</span>Number theory</a>
+    </nav></div>
+    <div class="side-card"><span class="spark">✳</span><p>Math is a language.</p><strong>Let’s make it clearer.</strong></div>
+  </aside>
+
+  <main class="main" id="home">
+    <div class="topbar"><div class="crumbs">Workspace &nbsp;/&nbsp; <b id="crumb">Number theory</b></div><div class="top-right"><span class="date" id="date"></span><button class="icon-btn" id="theme" type="button" aria-label="Toggle theme" title="Toggle light and dark theme">◐</button></div></div>
+    <section class="hero"><div><span class="eyebrow">Your mathematical workspace</span><h1>A little clarity<br />for <em>big questions.</em></h1><p>Explore numbers, test ideas, and see the thinking behind every answer.</p></div><div class="orbit" aria-hidden="true"><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="core">π</div><span class="sym s1">√−1 = i</span><span class="sym s2">gcd(a,b)</span><span class="sym s3">Σ</span><span class="sym s4">∞</span></div></section>
+    <div class="section-head"><div><small>The toolbox</small><h2 id="view-title">GCD &amp; LCM finder</h2></div><div class="pager"><b id="view-index">04</b> / 04</div></div>
+
+    <section class="tool-view number-view active" id="view-number" aria-label="GCD and LCM calculator">
+      <div class="bento">
+        <section class="card c-input reveal"><div class="card-title"><div class="badge">∴</div><div><h3>Find the hidden connection.</h3><p>Explore what two integers have in common.</p></div></div>
+          <form id="number-form" autocomplete="off"><div class="fields"><div class="field"><label for="number-a">First integer</label><input id="number-a" inputmode="numeric" value="84" /></div><div class="amp">&amp;</div><div class="field"><label for="number-b">Second integer</label><input id="number-b" inputmode="numeric" value="30" /></div></div><div class="err-msg" id="number-error" role="alert"></div><div class="actions"><button class="btn" type="submit">Find GCD &amp; LCM <span class="arr">↗</span></button><button class="ghost" type="button" id="number-swap">⇄ Swap</button><div class="try"><span>TRY</span><button type="button" class="chip" data-example="number" data-value="84,30">84 &amp; 30</button><button type="button" class="chip" data-example="number" data-value="252,105">252 &amp; 105</button><button type="button" class="chip" data-example="number" data-value="17,13">17 &amp; 13</button></div></div></form>
+        </section>
+        <aside class="card c-idea reveal"><div><span class="tag">✳ The idea</span><h4>Big numbers, small steps.</h4><p>The Euclidean algorithm finds the greatest common divisor by repeatedly taking remainders.</p></div><div class="big-n">N</div></aside>
+        <section class="card c-result reveal"><span class="status" id="number-status">FOUND</span><span class="tag">Result</span><div class="nums"><div class="num"><small>GCD</small><strong id="number-gcd">6</strong><span>Greatest common divisor</span></div><div class="num lcm"><small>LCM</small><strong id="number-lcm">420</strong><span>Least common multiple</span></div></div><div class="meta" id="number-meta"></div><button class="ghost copy" type="button" id="number-copy">Copy result</button></section>
+        <section class="card c-venn reveal"><span class="tag">Prime factors · visualised</span><div class="venn-wrap" id="number-venn"></div></section>
+        <section class="card c-steps reveal"><span class="tag">Euclidean algorithm · step by step</span><ol class="steps" id="number-steps"></ol></section>
+        <section class="card c-fact reveal"><span class="tag">Quick fact</span><div class="formula">gcd(a, b) <span class="hl">×</span> lcm(a, b) = a <span class="hl">×</span> b</div><div class="check" id="number-check"></div><div class="history"><span class="tag">Recent</span><div class="meta" id="number-history"></div></div></section>
+      </div>
+    </section>
+
+    <section class="tool-view prime-view" id="view-prime" aria-label="Prime number checker">
+      <div class="bento">
+        <section class="card c-input reveal"><div class="card-title"><div class="badge">p</div><div><h3>Is it prime?</h3><p>Explore the divisors and structure of a whole number.</p></div></div><form id="prime-form" autocomplete="off"><div class="fields single-field"><div class="field"><label for="prime-input">Whole number · up to 100 digits</label><input id="prime-input" inputmode="numeric" placeholder="e.g. 97" /></div></div><div class="err-msg" id="prime-error" role="alert"></div><div class="actions"><button class="btn" type="submit">Check number <span class="arr">↗</span></button><div class="try"><span>TRY</span><button type="button" class="chip" data-example="prime" data-value="97">97</button><button type="button" class="chip" data-example="prime" data-value="221">221</button><button type="button" class="chip" data-example="prime" data-value="104729">104,729</button></div></div></form></section>
+        <aside class="card c-idea reveal"><div><span class="tag">✳ The idea</span><h4>A number with a special story.</h4><p>A prime has exactly two positive divisors: 1 and itself.</p></div><div class="big-n">ℙ</div></aside>
+        <section class="card c-result reveal"><span class="status" id="prime-status">READY</span><span class="tag">Result</span><div class="nums"><div class="num"><small>NUMBER</small><strong id="prime-value">—</strong><span>Number being checked</span></div><div class="num lcm"><small>STATUS</small><strong id="prime-answer">—</strong><span id="prime-summary">Enter a whole number</span></div></div><div class="meta" id="prime-meta"></div></section>
+        <section class="card c-venn reveal"><span class="tag">Divisibility · quick scan</span><div class="factor-visual" id="prime-visual"><div class="empty"><div class="o">p</div>Choose a number to inspect its divisibility.</div></div></section>
+        <section class="card c-steps reveal"><span class="tag">Primality check · step by step</span><ol class="steps" id="prime-steps"><li class="static-step"><span class="dot">01</span><span>Enter a number to begin.</span></li></ol></section>
+        <section class="card c-fact reveal"><span class="tag">Quick fact</span><div class="formula">2 is the <span class="hl">only</span> even prime.</div><div class="check" id="prime-check">Every other even whole number can be divided by 2, so it has more than two divisors.</div><div class="history"><span class="tag">Try these</span><div class="meta"><button class="chip" data-example="prime" data-value="2">2</button><button class="chip" data-example="prime" data-value="97">97</button><button class="chip" data-example="prime" data-value="221">221</button></div></div></section>
+      </div>
+    </section>
+
+    <section class="tool-view complex-view" id="view-complex" aria-label="Complex square root calculator">
+      <div class="bento">
+        <section class="card c-input reveal"><div class="card-title"><div class="badge">√</div><div><h3>Square roots, even for the imaginary.</h3><p>Find both roots of a complex number, a + bi.</p></div></div><form id="complex-form" autocomplete="off"><div class="fields"><div class="field"><label for="complex-a">Real part · a</label><input id="complex-a" type="number" step="any" value="3" /></div><div class="amp">+</div><div class="field"><label for="complex-b">Imaginary part · b</label><input id="complex-b" type="number" step="any" value="4" /></div></div><div class="err-msg" id="complex-error" role="alert"></div><div class="actions"><button class="btn" type="submit">Find square roots <span class="arr">↗</span></button><div class="try"><span>TRY</span><button type="button" class="chip" data-example="complex" data-value="3,4">3 + 4i</button><button type="button" class="chip" data-example="complex" data-value="-4,0">−4</button><button type="button" class="chip" data-example="complex" data-value="0,1">i</button></div></div></form></section>
+        <aside class="card c-idea reveal"><div><span class="tag">✳ The idea</span><h4>Real answers aren’t the whole story.</h4><p>Complex numbers pair a real part with an imaginary part to make more equations solvable.</p></div><div class="big-n">i</div></aside>
+        <section class="card c-result reveal"><span class="status" id="complex-status">READY</span><span class="tag">Both square roots</span><div class="complex-answer" id="complex-answer"><div class="empty"><div class="o">√</div>Enter a + bi to find its roots.</div></div><div class="meta" id="complex-meta"></div></section>
+        <section class="card c-venn reveal"><span class="tag">Complex plane · roots</span><div class="factor-visual" id="complex-visual"><div class="empty"><div class="o">ℂ</div>Your roots will be plotted here.</div></div></section>
+        <section class="card c-steps reveal"><span class="tag">Square root formula · step by step</span><ol class="steps" id="complex-steps"><li class="static-step"><span class="dot">01</span><span>Enter a complex number to begin.</span></li></ol></section>
+        <section class="card c-fact reveal"><span class="tag">Quick fact</span><div class="formula"><span class="hl">i²</span> = −1</div><div class="check">The imaginary unit makes negative real numbers have square roots. Every nonzero complex number has two roots that are opposites.</div><div class="history"><span class="tag">Try these</span><div class="meta"><button class="chip" data-example="complex" data-value="3,4">3 + 4i</button><button class="chip" data-example="complex" data-value="-4,0">−4</button></div></div></section>
+      </div>
+    </section>
+
+    <section class="tool-view quadratic-view" id="view-quadratic" aria-label="Quadratic equation solver">
+      <div class="bento">
+        <section class="card c-input reveal"><div class="card-title"><div class="badge">x²</div><div><h3>Every parabola has a story.</h3><p>Solve ax² + bx + c = 0 and inspect the discriminant.</p></div></div><form id="quadratic-form" autocomplete="off"><div class="fields triple"><div class="field"><label for="quad-a">Coefficient · a</label><input id="quad-a" type="number" step="any" value="1" /></div><div class="amp">x² +</div><div class="field"><label for="quad-b">Coefficient · b</label><input id="quad-b" type="number" step="any" value="-5" /></div><div class="amp">x +</div><div class="field"><label for="quad-c">Constant · c</label><input id="quad-c" type="number" step="any" value="6" /></div></div><div class="err-msg" id="quadratic-error" role="alert"></div><div class="actions"><button class="btn" type="submit">Solve equation <span class="arr">↗</span></button><div class="try"><span>TRY</span><button type="button" class="chip" data-example="quadratic" data-value="1,-5,6">x² − 5x + 6</button><button type="button" class="chip" data-example="quadratic" data-value="1,2,5">x² + 2x + 5</button></div></div></form></section>
+        <aside class="card c-idea reveal"><div><span class="tag">✳ The idea</span><h4>One formula, many possibilities.</h4><p>The discriminant tells whether the solutions are real, repeated, or complex.</p></div><div class="big-n">Δ</div></aside>
+        <section class="card c-result reveal"><span class="status" id="quadratic-status">READY</span><span class="tag">Solution</span><div class="complex-answer" id="quadratic-answer"><div class="empty"><div class="o">x²</div>Enter coefficients to solve.</div></div><div class="meta" id="quadratic-meta"></div></section>
+        <section class="card c-venn reveal"><span class="tag">Discriminant · root type</span><div class="factor-visual" id="quadratic-visual"><div class="empty"><div class="o">Δ</div>Your discriminant and root type will appear here.</div></div></section>
+        <section class="card c-steps reveal"><span class="tag">Quadratic formula · step by step</span><ol class="steps" id="quadratic-steps"><li class="static-step"><span class="dot">01</span><span>Enter a quadratic equation to begin.</span></li></ol></section>
+        <section class="card c-fact reveal"><span class="tag">Quick fact</span><div class="formula">Δ = b² <span class="hl">−</span> 4ac</div><div class="check" id="quadratic-check">A positive discriminant gives two real roots; zero gives one repeated root; a negative value gives two complex roots.</div><div class="history"><span class="tag">Try these</span><div class="meta"><button class="chip" data-example="quadratic" data-value="1,-5,6">x² − 5x + 6</button><button class="chip" data-example="quadratic" data-value="1,2,5">x² + 2x + 5</button></div></div></section>
+      </div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>

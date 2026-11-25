@@ -3,20 +3,20 @@
 > **A little clarity for *big questions.*** 🧮
 > Explore numbers, test ideas, and see the thinking behind every answer.
 
-NumberTheory is a clean, modern math workspace that doesn't just give you answers, it **shows you how it got there**. Type in two numbers, and the app finds their GCD and LCM, then walks you through the reasoning with step-by-step working and a visual diagram of their prime factors. 🎓
+NumberTheory is a clean, responsive math workspace that shows how it gets its answers. It includes a prime checker, complex square root solver, quadratic solver, and GCD & LCM finder, with visualizations and step-by-step working.
 
 ---
 
 ## 📖 What is this?
 
-Most calculators hand you a number and stop. NumberTheory is built for **understanding**. It's a small toolbox of math helpers, each one designed to make the idea behind the answer easy to see.
+Most calculators hand you a number and stop. NumberTheory is built for **understanding**. Each tool makes the idea behind its answer easy to see.
 
-The current tool is the **GCD & LCM finder** 🔎:
+- **Prime checker:** checks positive, negative and small integers, then applies repeated-squaring primality rounds to larger values.
+- **Complex square roots:** finds both roots of `a + bi` and plots them on the complex plane.
+- **Quadratic solver:** solves `ax² + bx + c = 0`, including repeated roots and complex conjugate pairs.
+- **GCD & LCM finder:** finds the greatest common divisor and least common multiple of two positive integers, and shows the Euclidean algorithm.
 
-- **GCD** (Greatest Common Divisor): the largest number that divides both inputs evenly.
-- **LCM** (Least Common Multiple): the smallest number that both inputs divide into evenly.
-
-**Example:** for `84` and `30`, the GCD is **6** and the LCM is **420**. 🎯
+For example, `84` and `30` have GCD **6** and LCM **420**. 🎯
 
 ---
 
@@ -24,17 +24,19 @@ The current tool is the **GCD & LCM finder** 🔎:
 
 | | Feature | What it does |
 |---|---|---|
-| 🧮 | **GCD & LCM finder** | Instant results for any two positive integers (up to 15 digits) |
-| 🪜 | **Euclidean algorithm steps** | See every division and remainder, animated one line at a time |
-| 🟢 | **Prime factor Venn diagram** | Shared factors sit in the middle and become the GCD |
-| ✅ | **Identity check** | Verifies `gcd(a,b) × lcm(a,b) = a × b` for your numbers |
-| 🤝 | **Coprime detector** | Tells you whether the two numbers share no factors |
-| ⚡ | **Quick examples** | One-tap chips like `84 & 30` and `252 & 105` |
-| 🔁 | **Swap & history** | Flip the inputs, or jump back to your recent calculations |
-| 📋 | **Copy result** | Copy the answer to your clipboard |
-| 🌗 | **Light / dark mode** | Toggle with the ◐ button |
+| 🔎 | **Prime checker** | Checks integers up to 100 digits and distinguishes deterministic results from probable primes |
+| √ | **Complex roots** | Calculates both square roots of `a + bi` and plots the points on a complex plane |
+| x² | **Quadratic solver** | Finds real or complex roots and explains the discriminant |
+| 🧮 | **GCD & LCM finder** | Finds both values for two positive integers |
+| 🪜 | **Worked steps** | Shows the Euclidean algorithm, prime checks, and equation formulas |
+| 🟢 | **Math visualizations** | Displays shared prime factors, complex roots, and discriminant type |
+| ✅ | **Identity check** | Verifies `gcd(a,b) × lcm(a,b) = a × b` |
+| ⚡ | **Quick examples** | One-tap examples for every tool |
+| 🔁 | **Swap & history** | Flip GCD/LCM inputs or return to recent calculations |
+| 📋 | **Copy result** | Copy GCD and LCM results to the clipboard |
+| 🌗 | **Light / dark mode** | Toggle themes with the ◐ button |
 | 📱 | **Responsive** | Works on desktop, tablet and phone |
-| ♿ | **Reduced-motion friendly** | Animations switch off if your system asks for it |
+| ♿ | **Reduced-motion friendly** | Animations switch off when requested by the system |
 
 ---
 
@@ -50,54 +52,53 @@ The GCD is found by repeatedly taking remainders until nothing is left. The last
 24 = 6  × 4 + 0   ← remainder 0, so GCD = 6 ✅
 ```
 
-### 2️⃣ The LCM shortcut
+The LCM follows from `lcm(a, b) = (a ÷ gcd) × b`, and the app checks `gcd(a, b) × lcm(a, b) = a × b` for each calculation.
 
-Once the GCD is known, the LCM follows from a simple identity:
+### 2️⃣ Prime checking
 
-```
-lcm(a, b) = (a ÷ gcd) × b
-```
+Small prime divisors are checked first, followed by Miller–Rabin repeated-squaring rounds. The check is deterministic below `2⁶⁴`; larger values that pass all 16 rounds are labelled **probably prime**.
 
-### 3️⃣ The golden rule 🌟
+### 3️⃣ Complex square roots
 
-For any two positive integers:
+For `z = a + bi`, let `r = |z| = √(a² + b²)`. A square root is `u + vi`, where `u = √((r + a)/2)` and `v = sign(b) · √((r − a)/2)`. The two roots are opposites.
 
-```
-gcd(a, b) × lcm(a, b) = a × b
-```
+### 4️⃣ Quadratic equations
 
-The app displays this check for every calculation so you can see it hold true.
+For `ax² + bx + c = 0`, the solver uses `x = (−b ± √Δ) / 2a`, where `Δ = b² − 4ac`. The sign of Δ determines whether the roots are real, repeated, or complex.
 
 ---
 
 ## 🚀 Getting started
 
-NumberTheory is a **single self-contained HTML file**, so there's nothing to install. 🎉
+NumberTheory is a static HTML, CSS and JavaScript app with no build step or framework dependencies.
 
-1. 📥 Download or clone the project
-2. 🖱️ Open `number-theory-redesign.html` in any modern browser
-3. ⌨️ Enter two integers and press **Find GCD & LCM**
+1. 📥 Clone or download the project
+2. 🖱️ Open `index.html` in a modern browser
+3. ⌨️ Choose a tool, enter values, and press its action button
 
-Or serve it locally:
+To serve it locally, use Python:
 
 ```bash
-# Python
 python3 -m http.server 8000
-
-# Node
-npx serve .
 ```
 
 Then visit `http://localhost:8000` 🌐
+
+### Deploy to Vercel
+
+Import the repository into Vercel. The project is static, uses `index.html` at the root, and does not require a build command.
 
 ---
 
 ## 🗂️ Project structure
 
 ```
-📦 numbertheory
- ┣ 📜 number-theory-redesign.html   # App: markup, styles and logic in one file
- ┗ 📝 README.md                     # You are here
+📦 maths_webapp
+ ┣ 📜 index.html       # App structure and content
+ ┣ 📜 styles.css       # Responsive theme and layout
+ ┣ 📜 app.js           # Number theory tools and interactions
+ ┣ 📜 vercel.json      # Static Vercel URL configuration
+ ┗ 📝 README.md        # You are here
 ```
 
 ---
@@ -108,7 +109,7 @@ Then visit `http://localhost:8000` 🌐
 - 🪟 **Glassmorphism cards** laid out in a bento grid
 - 💚 **Mint accent** with violet and coral highlights
 - 🔤 **Typography:** [Inter](https://fonts.google.com/specimen/Inter) for UI, [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) for expressive headings, and [JetBrains Mono](https://www.jetbrains.com/lp/mono/) for numbers
-- 🎛️ **Design tokens:** all colours, radii and fonts are CSS variables at the top of the file, so re-theming is a quick edit
+- 🎛️ **Design tokens:** colours, radii and fonts are CSS variables in `styles.css`
 
 ---
 
@@ -116,24 +117,26 @@ Then visit `http://localhost:8000` 🌐
 
 - 🧱 **HTML5**
 - 🎨 **CSS3** (custom properties, grid, backdrop-filter, keyframe animations)
-- ⚙️ **Vanilla JavaScript** with no frameworks and no dependencies
-- 🔢 **BigInt** for exact arithmetic on very large numbers
+- ⚙️ **Vanilla JavaScript** with no frameworks or dependencies
+- 🔢 **BigInt** for exact integer arithmetic
 
 ---
 
 ## ⚠️ Input limits
 
-- ✅ Positive whole numbers only (commas and spaces are ignored)
-- ✅ Up to **15 digits** per number
-- 🔍 The prime factor diagram is shown for numbers up to **10¹²**. Larger numbers still get GCD, LCM and steps, just without the diagram.
+- ✅ GCD and LCM accept positive whole numbers up to 100 digits
+- ✅ Prime checker accepts signed whole numbers up to 100 digits
+- 🔍 The prime factor diagram is shown for inputs up to **10¹²**
+- 🔎 Prime results are deterministic below **2⁶⁴**; larger passing values are reported as probable primes
+- 🧮 Complex and quadratic solvers accept finite numeric values with absolute value below **10¹⁵⁰**
 
 ---
 
 ## 🗺️ Roadmap
 
-- [ ] 🔎 **Prime checker**
-- [ ] √ **Complex roots**
-- [ ] x² **Quadratics solver**
+- [x] 🔎 **Prime checker**
+- [x] √ **Complex roots**
+- [x] x² **Quadratics solver**
 - [ ] 📤 Export results as an image or PDF
 - [ ] 🔗 Shareable links for calculations
 - [ ] 🧮 GCD and LCM for more than two numbers
